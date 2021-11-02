@@ -1,0 +1,6 @@
+Mon Oct 25 20:33:03 2021         temperature  :  19.5408 °C
+Mon Oct 25 20:33:04 2021         temperature  :  19.8265 °C
+Mon Oct 25 20:33:05 2021         temperature  :  19.6312 °C
+Mon Oct 25 20:33:06 2021         temperature  :  19.1832 °C
+Mon Oct 25 20:33:07 2021         temperature  :  20.2572 °C
+Mon Oct 25 20:33:09 2021         temperature  :  20.2682 °C
