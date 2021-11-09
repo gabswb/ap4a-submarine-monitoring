@@ -1,5 +1,5 @@
 # ap4a-submarine-monitoring*
-Project carried out as part of the subject ap4a (object oriented programming) at the UTBM.
+Project carried out as part of the subject ap4a (object oriented programming in C++) at the UTBM.
 
 This project aims to build an IOT environment simulator.
 It models an ecosystem of sensors designed to monitor the environment
