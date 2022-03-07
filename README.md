@@ -15,13 +15,13 @@ To compile this project, you will need:
 - [GNU make](https://www.gnu.org/software/make/) 
 - a C++ compiler, e.g. GNU g++
 
-###Get source files
+### Get source files
 
 ```sh
 git clone https://github.com/gabswb/ap4a-submarine-monitoring.git
 cd ap4a-submarine-monitoring
 ```
-###Compile and run
+### Compile and run
 
 ```sh
 mkdir build && cd build
