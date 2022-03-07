@@ -6,7 +6,7 @@
  */
 
 //
-//Define guards
+// Define guards
 #ifndef SERVER_HPP
 #define SERVER_HPP
 
@@ -16,12 +16,10 @@
 
 #include "Sensor.hpp"
 
-
 class Server
 {
 
-public :
-
+public:
 	Server();
 	/**
 	 * @brief constructor which provide user's choices for console and log activation
@@ -29,9 +27,9 @@ public :
 	 * @param logActivation_p
 	 */
 	Server(bool consoleActivation_p, bool logActivation_p);
-	Server(const Server& server);
+	Server(const Server &server);
 	virtual ~Server();
-	Server& operator=(const Server& server);
+	Server &operator=(const Server &server);
 
 	/**
 	 * @brief set the activation of the console writing
@@ -49,18 +47,17 @@ public :
 	 * @param data_p
 	 * @param unit_p unit of the data
 	 */
-	template<typename T>
+	template <typename T>
 	void consoleWrite(std::string sensorType_p, T data_p, std::string unit_p)
 	{
-		if(m_consoleActivation)
+		if (m_consoleActivation)
 		{
-			int nbOfSpace = 12-sensorType_p.length();///< calculate the number of space needed to align the display of the different sensors (just for esthetic)
+			int nbOfSpace = 12 - sensorType_p.length(); ///< calculate the number of space needed to align the display of the different sensors (just for esthetic)
 
-			m_locker.lock();///< lock the console writing in order to prevent different threads to write in it at the same time
-			std::cout <<getTime() << "     " << sensorType_p<< std::string(nbOfSpace,' ') << "  :  "<<std::boolalpha<< data_p <<" "<< unit_p <<std::endl;
+			m_locker.lock(); ///< lock the console writing in order to prevent different threads to write in it at the same time
+			std::cout << getTime() << "     " << sensorType_p << std::string(nbOfSpace, ' ') << "  :  " << std::boolalpha << data_p << " " << unit_p << std::endl;
 			m_locker.unlock();
 		}
-
 	}
 
 	/**
@@ -70,37 +67,33 @@ public :
 	 * @param data_p
 	 * @param unit_p unit of the data
 	 */
-	template<typename T>
+	template <typename T>
 	void fileWrite(std::string sensorType_p, T data_p, std::string unit_p)
 	{
-		if(m_logActivation)
+		if (m_logActivation)
 		{
 			m_locker.lock();
 
-			std::string filePath = "Logs/"+sensorType_p+".txt";
+			std::string filePath = "logs/" + sensorType_p + ".txt";
 			std::ofstream file;
 			file.open(filePath, std::ios::app);
 
-
-			if(file)///< test if the file is correctly open
+			if (file) ///< test if the file is correctly open
 			{
-				file  <<getTime()<< "         " << sensorType_p << "  :  "<<std::boolalpha << data_p <<" "<< unit_p <<std::endl;
+				file << getTime() << "         " << sensorType_p << "  :  " << std::boolalpha << data_p << " " << unit_p << std::endl;
 			}
 			else
 			{
-				std::cout<< "file errror, couldn't open the right file"<<std::endl;
+				std::cout << "file errror, couldn't open the right file" << std::endl;
 			}
 
 			file.close();
 
 			m_locker.unlock();
 		}
-
 	}
 
-
-private :
-
+private:
 	bool m_consoleActivation, m_logActivation;
 
 	std::mutex m_locker;
@@ -109,9 +102,6 @@ private :
 	 * @return current time of the system
 	 */
 	std::string getTime();
-
-
 };
-
 
 #endif // SERVER_HPP
